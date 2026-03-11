@@ -1,0 +1,55 @@
+[package]
+name = "personal-dicom-viewer"
+version = "0.1.0"
+description = "A DICOM medical image viewer built with Tauri"
+authors = ["skalas"]
+license = ""
+repository = ""
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[build-dependencies]
+tauri-build = { version = "1.5", features = [] }
+
+[dependencies]
+# Tauri framework
+tauri = { version = "1.6", features = ["protocol-asset", "dialog-open", "shell-open"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Async runtime
+tokio = { version = "1.36", features = ["full"] }
+
+# DICOM parsing
+dicom = "0.9"
+dicom-core = "0.9"
+dicom-dictionary-std = "0.9"
+dicom-encoding = "0.9"
+dicom-object = "0.9"
+dicom-pixeldata = "0.9"
+
+# Error handling
+anyhow = "1.0"
+thiserror = "1.0"
+
+# File system operations
+walkdir = "2.4"
+
+# URL encoding/decoding
+percent-encoding = "2.3"
+base64 = "0.21"
+
+# Open files with system default app
+open = "3"
+
+# Logging
+log = "0.4"
+env_logger = "0.11"
+
+[dev-dependencies]
+tempfile = "3"
+
+[features]
+# This feature is used for production builds or when a dev server is not specified, DO NOT REMOVE!!
+custom-protocol = ["tauri/custom-protocol"]
