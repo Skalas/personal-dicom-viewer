@@ -17,8 +17,8 @@ const createImage = (dicomLoader as { createImage: (id: string, pixelData: unkno
 
 const SCHEME = "tauri-dicom";
 
-// Cache parsed datasets so the metadata provider can look them up by imageId
-const dataSetCache = new Map<string, unknown>();
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const dataSetCache = new Map<string, any>();
 
 function tauriDicomMetadataProvider(type: string, imageId: string) {
   if (!imageId.startsWith(SCHEME + ":")) return;
@@ -57,7 +57,8 @@ function loadImage(
       // Cache the dataset so our metadata provider can serve it to createImage
       dataSetCache.set(imageId, dataSet);
 
-      const pixelData = getPixelDataWadouri(dataSet, frame);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const pixelData = getPixelDataWadouri(dataSet as any, frame);
       if (!pixelData) {
         throw new Error("No pixel data in DICOM");
       }
@@ -76,6 +77,7 @@ function loadImage(
 }
 
 export function registerTauriDicomLoader(): void {
-  registerImageLoader(SCHEME, loadImage);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  registerImageLoader(SCHEME, loadImage as any);
   metaData.addProvider(tauriDicomMetadataProvider);
 }

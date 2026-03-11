@@ -105,6 +105,11 @@ export default defineConfig({
     },
   },
 
+  // Workers must use ES format for code-splitting compatibility
+  worker: {
+    format: "es",
+  },
+
   // Build configuration for Tauri
   build: {
     // Tauri uses Chromium on Windows and WebKit on macOS and Linux

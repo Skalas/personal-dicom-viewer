@@ -33,6 +33,7 @@ const makeStudy = (overrides: Partial<DicomStudy> = {}): DicomStudy => ({
   patientId: "P001",
   seriesCount: 1,
   series: [makeSeries()],
+  reportFiles: [],
   ...overrides,
 });
 

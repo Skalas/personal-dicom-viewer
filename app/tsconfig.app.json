@@ -25,7 +25,11 @@
       "@features/*": ["./src/features/*"],
       "@hooks/*": ["./src/hooks/*"],
       "@lib/*": ["./src/lib/*"],
-      "@store/*": ["./src/store/*"]
+      "@store/*": ["./src/store/*"],
+      "@cornerstonejs/core": ["./src/lib/cornerstone-core-shim.ts"],
+      "@cornerstonejs/tools": ["../vendor/cornerstone3d/tools/dist/esm"],
+      "@cornerstonejs/dicom-image-loader": ["../vendor/cornerstone3d/dicom-image-loader/dist/esm"],
+      "@cornerstonejs/dicom-image-loader/*": ["../vendor/cornerstone3d/dicom-image-loader/dist/esm/*"]
     },
 
     /* Linting */

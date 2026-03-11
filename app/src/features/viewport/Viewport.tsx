@@ -93,7 +93,8 @@ export function Viewport() {
     const element = containerRef.current;
     if (!element) return null;
 
-    let engine = getRenderingEngine(RENDERING_ENGINE_ID);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let engine = getRenderingEngine(RENDERING_ENGINE_ID) as any;
     if (!engine) {
       engine = new RenderingEngine(RENDERING_ENGINE_ID);
       renderingEngineRef.current = engine;
@@ -253,8 +254,9 @@ export function Viewport() {
     initRenderingEngine();
 
     const handleResize = () => {
-      const engine = getRenderingEngine(RENDERING_ENGINE_ID);
-      if (engine) engine.resize(true);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const engine = getRenderingEngine(RENDERING_ENGINE_ID) as any;
+      if (engine) (engine as RenderingEngine).resize(true);
     };
 
     window.addEventListener("resize", handleResize);
@@ -270,7 +272,8 @@ export function Viewport() {
     if (!element) return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      const engine = getRenderingEngine(RENDERING_ENGINE_ID);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const engine = getRenderingEngine(RENDERING_ENGINE_ID) as any;
       if (!engine) return;
       const viewport = engine.getStackViewport(VIEWPORT_ID);
       if (!viewport) return;
